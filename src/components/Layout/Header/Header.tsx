@@ -1,4 +1,4 @@
-import { Button, Flex, Group, Text } from "@mantine/core";
+import { Group, Text } from "@mantine/core";
 import Image from "next/image";
 import Logo from "@/assets/logo.png";
 

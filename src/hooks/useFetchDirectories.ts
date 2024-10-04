@@ -1,7 +1,6 @@
 import { RootState } from "@/lib/store";
 import {
   addDirectories,
-  Directory,
   setSelectedDirectory,
 } from "@/lib/store/features/Directories";
 
@@ -31,6 +30,7 @@ export function useFetchDirectories({ path = "/" }: hookProps) {
       return data;
     } catch (error) {
       setHasError(true);
+      console.error(error);
     } finally {
       setIsLoading(false);
     }

@@ -33,6 +33,7 @@ export const DirectoriesSlice = createSlice({
 
     resetState: (state) => {
       state = { ...initialState };
+      return state;
     },
   },
 });

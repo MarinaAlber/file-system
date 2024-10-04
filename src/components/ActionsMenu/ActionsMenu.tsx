@@ -12,7 +12,6 @@ type ActionsMenuProps = {
 export const ActionsMenu: FC<ActionsMenuProps> = ({
   canEdit = true,
   canDelete = true,
-  onUpdate,
   itemType,
 }) => {
   return (
