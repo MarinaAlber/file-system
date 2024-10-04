@@ -19,7 +19,6 @@ export const ActionsMenu: FC<ActionsMenuProps> = ({
   canDelete = true,
   itemType,
   itemFullPath,
-  onUpdate,
 }) => {
   const [opened, modalHandlers] = useDisclosure(false);
   const [action, setAction] = useState<ActionType>();
@@ -57,7 +56,6 @@ export const ActionsMenu: FC<ActionsMenuProps> = ({
         }
       );
       await response.json();
-      onUpdate && onUpdate();
       const type = itemType === "File" ? "files" : "folders";
       dispatch(deleteItem({ path: itemFullPath, itemType: type }));
     } catch {
