@@ -10,13 +10,16 @@ type FileProps = {
   name: string;
   path: string;
   type: "file" | "directory";
+  parentPath: string;
   canEdit?: boolean;
 };
-export const Card: FC<FileProps> = ({ name, path, type }) => {
+export const Card: FC<FileProps> = ({ name, path, parentPath, type }) => {
   const icon = type === "file" ? "File" : "Folder";
 
   const renderMenu = () => {
-    return <ActionsMenu itemType={icon} />;
+    return (
+      <ActionsMenu itemFullPath={parentPath + "/" + name} itemType={icon} />
+    );
   };
 
   const renderName = () => {
