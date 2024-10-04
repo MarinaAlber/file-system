@@ -6,7 +6,7 @@ import {
   DEFAULT_THEME,
   rem,
 } from "@mantine/core";
-import variables from "@/theme/variables.module.scss";
+import variables from "@/Theme/variables.module.scss";
 import { lexend } from "@/fonts/config";
 
 type CustomColors = { [key: string]: MantineColorsTuple };

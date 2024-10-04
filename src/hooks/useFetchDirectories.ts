@@ -41,7 +41,7 @@ export function useFetchDirectories({ path = "/" }: hookProps) {
     if (!allDirectories[path]) {
       fetchAllDirectories();
     }
-  }, []);
+  }, [path]);
 
   return { isLoading, hasError, data: allDirectories[path] || null };
 }

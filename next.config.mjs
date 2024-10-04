@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  sassOptions: {
-    additionalData: `@import "./src/theme/main.scss";`,
-  },
   experimental: {
     optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
+  },
+  sassOptions: {
+    additionalData: `@import "src/Theme/main.scss";`,
   },
   webpack(config) {
     config.module.rules.push({
