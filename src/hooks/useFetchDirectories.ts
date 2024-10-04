@@ -23,7 +23,7 @@ export function useFetchDirectories({ path = "/" }: hookProps) {
       setHasError(false);
       setIsLoading(true);
 
-      const response = await fetch(`/api/directories?path=${path}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE}/api/directories?path=${path}`);
       const data = await response.json();
       dispatch(addDirectories({ ...data, path: data.path }));
 
