@@ -8,12 +8,6 @@
   align-items: center;
   padding: 2rem 1rem;
   z-index: 300;
-  background-color: white;
-  border-bottom: 1px solid $secondary-100;
-
-  &[data-mantine-color-scheme="dark"] {
-    border-bottom: 1px solid $primary-600;
-  background-color: $primary-800;
-
-  }
+  background-color: var(--mantine-color-body);
+  border-bottom: 1px solid var(--mantine-color-dimmed);
 }

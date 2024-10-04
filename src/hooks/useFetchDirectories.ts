@@ -38,10 +38,10 @@ export function useFetchDirectories({ path = "/" }: hookProps) {
 
   useEffect(() => {
     dispatch(setSelectedDirectory(path));
-    if (!allDirectories[path]) {
+    if (!allDirectories || !allDirectories[path]) {
       fetchAllDirectories();
     }
   }, [path]);
 
-  return { isLoading, hasError, data: allDirectories[path] || null };
+  return { isLoading, hasError, data: (allDirectories && allDirectories[path]) || null };
 }

@@ -5,16 +5,15 @@ import { homedir } from "os";
 
 export const dynamic = "force-dynamic";
 export function GET(req: NextRequest) {
-  try{
-
+  try {
     const param = req.nextUrl.searchParams.get("path");
     const isHome = !param || param === "/";
     const folderPath = isHome ? homedir() : homedir() + param;
-  
+
     const folderName = isHome
       ? "Home"
       : folderPath.split("/").findLast((item) => item);
-  
+
     const folders: Partial<Dirent>[] = [];
     const files: Partial<Dirent>[] = [];
     const filesAndFolders = fs.readdirSync(folderPath, {
@@ -31,21 +30,41 @@ export function GET(req: NextRequest) {
         }
       }
     });
-    
+
     return NextResponse.json(
       {
         parentPath: folderPath,
-        path: folderPath === homedir() ? "/" : folderPath.replace(homedir(), ""),
+        path:
+          folderPath === homedir() ? "/" : folderPath.replace(homedir(), ""),
         name: folderName,
         folders,
         files,
       },
       { status: 200 }
     );
-  }catch(e){
+  } catch (e) {
     return NextResponse.json(
       {
-        error: e
+        error: e,
+      },
+      { status: 400 }
+    );
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  const body = req.headers.get("content-type")?.includes("json")
+    ? await req?.json()
+    : {};
+  const fullPath = body.path;
+  if (!fullPath) return NextResponse.json({ success: false });
+  try {
+    fs.rmSync(fullPath, { recursive: true, force: true });
+    return NextResponse.json({ success: true });
+  } catch (e) {
+    return NextResponse.json(
+      {
+        error: e,
       },
       { status: 400 }
     );

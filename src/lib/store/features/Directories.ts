@@ -24,21 +24,28 @@ export const DirectoriesSlice = createSlice({
   reducers: {
     addDirectories: (state, action: PayloadAction<Directory>) => {
       const directoryKey = action.payload.path;
-      state.directories[directoryKey]= action.payload;
- 
+      state.directories[directoryKey] = action.payload;
     },
-    setSelectedDirectory: (state, action: PayloadAction<string>) => {
-      state.selectedDirectory = action.payload;
+    deleteItem: (
+      state,
+      action: PayloadAction<{ path: string; itemType: "files" | "folders" }>
+    ) => {
+      const type = action.payload.itemType;
+      const index = state.directories[state.selectedDirectory][type].findIndex(
+        (item) => item.path === action.payload.path
+      );
+      if (index > -1) {
+        state.directories[state.selectedDirectory][type].splice(index, 1);
+      }
     },
 
-    resetState: (state) => {
-      state = { ...initialState };
-      return state;
+    setSelectedDirectory: (state, action: PayloadAction<string>) => {
+      state.selectedDirectory = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addDirectories, setSelectedDirectory, resetState } =
+export const { addDirectories, setSelectedDirectory, deleteItem } =
   DirectoriesSlice.actions;
 export default DirectoriesSlice.reducer;

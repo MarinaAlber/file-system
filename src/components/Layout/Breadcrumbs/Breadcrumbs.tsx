@@ -11,13 +11,13 @@ export const Breadcrumbs: FC = () => {
   const selectedDirectory = useSelector(
     (state : RootState) => state.DirectoriesReducer.selectedDirectory
   );
-  const items = selectedDirectory.split("/");
-  const links = items.map((item, index) => {
+  const items = selectedDirectory?.split("/");
+  const links = items?.map((item, index) => {
     const isFirst = index === 0 && item === "";
     const isLast = index === items.length - 1;
     const color = isLast ? "primary.9" : "primary";
 
-    const href = isFirst ? "/" : isLast ? "#" : `/${items.slice(0, index + 1).join("/")}`;
+    const href = isFirst ? "/" : isLast ? "#" : `${items?.slice(0, index + 1).join("/")}`;
     const label = isFirst ? (
       <Flex align="center" gap="0.25rem">
         <Icon name="Home" /> Home

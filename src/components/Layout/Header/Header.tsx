@@ -6,21 +6,22 @@ import React, { FC } from "react";
 
 import classes from "./header.module.scss";
 import Link from "next/link";
+import { ThemeChanger } from "./ThemeChanger";
 
 export const Header: FC = () => {
   return (
     <header className={classes.header}>
-      <Group>
+      <Group align="center" justify="space-between">
         <Link href="/">
-          <Image src={Logo} alt="File system app" width={35} />
+          <Image src={Logo} alt="File system app" width={30} />
         </Link>
-        <Text size="lg" c="primary.9">
+        <Text size="lg" c="primary">
           File System
         </Text>
       </Group>
-      {/* todo add github & theme <Group>
-        <Button></Button>
-      </Group> */}
+      <Group>
+        <ThemeChanger />
+      </Group>
     </header>
   );
 };
