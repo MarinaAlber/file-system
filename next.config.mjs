@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   sassOptions: {
-    additionalData: `@import "src/theme/main.scss";`,
+    additionalData: `@import "./src/theme/main.scss";`,
   },
   experimental: {
     optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
