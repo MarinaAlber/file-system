@@ -5,7 +5,6 @@ import { ConfirmationModal } from "../ConfirmationModal";
 import { useDisclosure } from "@mantine/hooks";
 import { useDispatch } from "react-redux";
 import { deleteItem } from "@/lib/store/features/Directories";
-import { on } from "events";
 
 type ActionsMenuProps = {
   canEdit?: boolean;
@@ -20,7 +19,7 @@ export const ActionsMenu: FC<ActionsMenuProps> = ({
   canDelete = true,
   itemType,
   itemFullPath,
-  onUpdate
+  onUpdate,
 }) => {
   const [opened, modalHandlers] = useDisclosure(false);
   const [action, setAction] = useState<ActionType>();
@@ -57,11 +56,10 @@ export const ActionsMenu: FC<ActionsMenuProps> = ({
           body: JSON.stringify({ path: itemFullPath }),
         }
       );
-      const data = await response.json();
+      await response.json();
       onUpdate && onUpdate();
       const type = itemType === "File" ? "files" : "folders";
-      dispatch(deleteItem({ path: itemFullPath, itemType:type }));
-
+      dispatch(deleteItem({ path: itemFullPath, itemType: type }));
     } catch {
     } finally {
       modalHandlers.close();
